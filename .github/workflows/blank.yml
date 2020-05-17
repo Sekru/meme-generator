@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x]
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -19,5 +19,3 @@ jobs:
         npm run build
     - name: Tests
       run: npm run test
-    - name: Deploy to GH Pages
-      run: npm run deploy
