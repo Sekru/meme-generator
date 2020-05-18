@@ -24,7 +24,7 @@ class ImageComponent extends React.Component {
               <input type="file" id="idImg" onChange={this.showImage} />
             </>
           ) : (
-            <img alt="Could not load image" src={this.state.file} />
+            <img alt="Mem" src={this.state.file} />
           )}
         </div>
       </>
