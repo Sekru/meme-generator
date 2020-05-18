@@ -21,7 +21,7 @@ class ImageComponent extends React.Component {
           {!this.state.file ? (
             <>
               <p>Dodaj Obrazek</p>
-              <input type="file" id="idImg" onChange={this.showImage} />
+              <input type="file" id="memUpload" onChange={this.showImage} />
             </>
           ) : (
             <img alt="Mem" src={this.state.file} />

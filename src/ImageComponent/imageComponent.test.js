@@ -14,7 +14,7 @@ test("should render image when input was filled", () => {
   const getById = queryByAttribute.bind(null, "id");
   global.URL.createObjectURL = jest.fn();
   const dom = render(<ImageComponent />);
-  const table = getById(dom.container, "idImg");
+  const table = getById(dom.container, "memUpload");
 
   const file = new File(["(⌐□_□)"], "chucknorris.png", {
     type: "image/png",
