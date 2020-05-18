@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import ImageComponent from "./ImageComponent.js";
+import ImageComponent from "./ImageComponent/ImageComponent.js";
 
 const App = () => {
   return (

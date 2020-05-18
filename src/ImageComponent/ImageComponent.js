@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./ImageComponent.css";
 
 class ImageComponent extends React.Component {
   state = {
@@ -24,7 +24,7 @@ class ImageComponent extends React.Component {
               <input type="file" id="idImg" onChange={this.showImage} />
             </>
           ) : (
-            <img src={this.state.file} />
+            <img alt="Could not load image" src={this.state.file} />
           )}
         </div>
       </>
