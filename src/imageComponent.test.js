@@ -25,4 +25,9 @@ test("should render image when input was filled", () => {
   });
 
   fireEvent.change(table);
+
+  setTimeout(() => {
+    const domAfterFileUploaded = render(<ImageComponent />);
+    expect(getById(domAfterFileUploaded.container, "idImg")).toBe(null);
+  }, 2000)
 });
