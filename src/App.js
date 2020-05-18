@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import ImageComponent from "./ImageComponent/ImageComponent.js";
 
 const App = () => {
   return (
@@ -8,36 +9,5 @@ const App = () => {
     </div>
   );
 };
-
-class ImageComponent extends React.Component {
-  state = {
-    altText: true,
-    file: null,
-  };
-
-  showImage = (event) => {
-    this.setState({
-      altText: false,
-      file: URL.createObjectURL(event.target.files[0]),
-    });
-  };
-
-  render() {
-    return (
-      <>
-        <div className="Border">
-          {this.state.altText ? (
-            <>
-              <p>Dodaj Obrazek</p>
-              <input type="file" onChange={this.showImage} />
-            </>
-          ) : (
-            <img src={this.state.file} />
-          )}
-        </div>
-      </>
-    );
-  }
-}
 
 export default App;
