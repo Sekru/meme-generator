@@ -32,4 +32,4 @@ class ImageComponent extends React.Component {
   }
 }
 
-export { ImageComponent };
+export default ImageComponent;
