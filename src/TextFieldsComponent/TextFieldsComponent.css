@@ -1,0 +1,11 @@
+input {
+  display: block;
+  margin: 0 15px 15px 15px;
+  height: 20px;
+  padding: 5px;
+}
+
+.fields {
+  display: inline-block;
+  vertical-align: top;
+}
