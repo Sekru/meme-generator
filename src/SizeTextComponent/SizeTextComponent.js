@@ -8,6 +8,7 @@ class SizeTextComponent extends React.Component {
         <input
           type="number"
           onChange={this.props.handleSizeTop}
+          value={this.props.sizeTop}
           id="size-top"
           placeholder="25px"
           min="0"
@@ -15,7 +16,8 @@ class SizeTextComponent extends React.Component {
         <input
           type="number"
           onChange={this.props.handleSizeBottom}
-          id="size-top"
+          value={this.props.sizeBottom}
+          id="size-bottom"
           placeholder="25px"
           min="0"
         />
