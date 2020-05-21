@@ -1,0 +1,9 @@
+.field {
+  float: right;
+  vertical-align: top;
+  width: 10px;
+}
+
+#sizetop {
+  width: 50px;
+}
