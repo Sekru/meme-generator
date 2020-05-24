@@ -4,6 +4,9 @@ import "./ImageComponent.css";
 import TextFieldsComponent from "./../TextFieldsComponent/TextFieldsComponent";
 import SizeTextComponent from "./../SizeTextComponent/SizeTextComponent";
 import ColorTextComponent from "./../ColorTextComponent/ColorTextComponent";
+import SaveButtonComponent from "./../SaveButtonComponent/SaveButtonComponent";
+import html2canvas from "html2canvas";
+import { saveAs } from "file-saver";
 
 class ImageComponent extends React.Component {
   constructor(props) {
@@ -17,6 +20,8 @@ class ImageComponent extends React.Component {
 
     this.handleColorTop = this.handleColorTop.bind(this);
     this.handleColorBottom = this.handleColorBottom.bind(this);
+
+    this.handleSaveButton = this.handleSaveButton.bind(this);
   }
 
   state = {
@@ -24,50 +29,61 @@ class ImageComponent extends React.Component {
     file: null,
     sizeTop: 25,
     sizeBottom: 25,
-    colorTop: 'rgb(0, 0, 0)',
-    colorBottom: 'rgb(0, 0, 0)'
+    colorTop: "rgb(0, 0, 0)",
+    colorBottom: "rgb(0, 0, 0)",
   };
 
-  showImage = event => {
+  showImage = (event) => {
     this.setState({
       altText: false,
       file: URL.createObjectURL(event.target.files[0]),
     });
   };
 
-  handleTopText = event => {
+  handleTopText = (event) => {
     this.setState({
       topText: event.target.value,
     });
   };
 
-  handleColorTop = event => {
+  handleColorTop = (event) => {
     this.setState({
       colorTop: event.target.value,
     });
   };
 
-  handleColorBottom = event => {
+  handleColorBottom = (event) => {
     this.setState({
       colorBottom: event.target.value,
     });
   };
 
-  handleBottomText = event => {
+  handleBottomText = (event) => {
     this.setState({
       bottomText: event.target.value,
     });
   };
 
-  handleSizeTop = event => {
+  handleSizeTop = (event) => {
     this.setState({
       sizeTop: event.target.value,
     });
   };
 
-  handleSizeBottom = event => {
+  handleSizeBottom = (event) => {
     this.setState({
       sizeBottom: event.target.value,
+    });
+  };
+
+  handleSaveButton = () => {
+    html2canvas(document.querySelector("#capture"), {
+      logging: true,
+      letterRendering: 1,
+      allowTaint: false,
+      useCORS: true,
+    }).then((canvas) => {
+      saveAs(canvas.toDataURL(), "funny_mem.png");
     });
   };
 
@@ -81,16 +97,22 @@ class ImageComponent extends React.Component {
               <input type="file" id="memUpload" onChange={this.showImage} />
             </div>
           ) : (
-            <div className="meme-container">
+            <div id="capture" className="meme-container">
               <span
-                style={{ fontSize: this.state.sizeTop + "px", color: this.state.colorTop }}
+                style={{
+                  fontSize: this.state.sizeTop + "px",
+                  color: this.state.colorTop,
+                }}
                 id="top-meme-text"
               >
                 {this.state.topText}
               </span>
               <img alt="Mem" src={this.state.file} />
               <span
-                style={{ fontSize: this.state.sizeBottom + "px", color: this.state.colorBottom }}
+                style={{
+                  fontSize: this.state.sizeBottom + "px",
+                  color: this.state.colorBottom,
+                }}
                 id="bottom-meme-text"
               >
                 {this.state.bottomText}
@@ -113,6 +135,9 @@ class ImageComponent extends React.Component {
             colorTop={this.state.colorTop}
             colorBottom={this.state.colorBottom}
           />
+          <SaveButtonComponent
+            handleSaveButton={this.handleSaveButton}
+          ></SaveButtonComponent>
         </div>
       </>
     );
