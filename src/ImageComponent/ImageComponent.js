@@ -78,7 +78,7 @@ class ImageComponent extends React.Component {
 
   handleSaveButton = () => {
     if (this.state.file != null) {
-      html2canvas(document.querySelector("#capture"), {
+      html2canvas(document.querySelector(".meme-container"), {
         logging: true,
         letterRendering: 1,
         allowTaint: false,
@@ -99,7 +99,7 @@ class ImageComponent extends React.Component {
               <input type="file" id="memUpload" onChange={this.showImage} />
             </div>
           ) : (
-            <div id="capture" className="meme-container">
+            <div className="meme-container">
               <span
                 style={{
                   fontSize: this.state.sizeTop + "px",
