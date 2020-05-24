@@ -77,14 +77,16 @@ class ImageComponent extends React.Component {
   };
 
   handleSaveButton = () => {
-    html2canvas(document.querySelector("#capture"), {
-      logging: true,
-      letterRendering: 1,
-      allowTaint: false,
-      useCORS: true,
-    }).then((canvas) => {
-      saveAs(canvas.toDataURL(), "funny_mem.png");
-    });
+    if (this.state.file != null) {
+      html2canvas(document.querySelector("#capture"), {
+        logging: true,
+        letterRendering: 1,
+        allowTaint: false,
+        useCORS: true,
+      }).then((canvas) => {
+        saveAs(canvas.toDataURL(), "funny_mem.png");
+      });
+    }
   };
 
   render() {
