@@ -94,7 +94,12 @@ class ImageComponent extends React.Component {
       <>
         <div className="border">
           {!this.state.file ? (
-            <div className="image-container">
+            <div
+              style={{
+                height: 500 + "px",
+              }}
+              className="image-container"
+            >
               <p>Dodaj Obrazek</p>
               <input type="file" id="memUpload" onChange={this.showImage} />
             </div>
