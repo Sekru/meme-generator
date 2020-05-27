@@ -4,8 +4,3 @@ input {
   height: 20px;
   padding: 5px;
 }
-
-.fields {
-  display: inline-block;
-  vertical-align: top;
-}

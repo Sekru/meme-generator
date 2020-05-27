@@ -5,10 +5,19 @@ import TextFieldsComponent from "./../TextFieldsComponent/TextFieldsComponent";
 import SizeTextComponent from "./../SizeTextComponent/SizeTextComponent";
 import ColorTextComponent from "./../ColorTextComponent/ColorTextComponent";
 import SaveButtonComponent from "./../SaveButtonComponent/SaveButtonComponent";
+import ResetButtonComponent from "./../ResetButtonComponent/ResetButtonComponent";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 
 class ImageComponent extends React.Component {
+  initState = {
+    altText: true,
+    file: '',
+    sizeTop: 25,
+    sizeBottom: 25,
+    colorTop: '#ffffff',
+    colorBottom: '#ffffff',
+  };
   constructor(props) {
     super(props);
 
@@ -22,16 +31,10 @@ class ImageComponent extends React.Component {
     this.handleColorBottom = this.handleColorBottom.bind(this);
 
     this.handleSaveButton = this.handleSaveButton.bind(this);
-  }
+    this.handleResetButton = this.handleResetButton.bind(this);
 
-  state = {
-    altText: true,
-    file: null,
-    sizeTop: 25,
-    sizeBottom: 25,
-    colorTop: "rgb(0, 0, 0)",
-    colorBottom: "rgb(0, 0, 0)",
-  };
+    this.state = this.initState;
+  }
 
   showImage = (event) => {
     this.setState({
@@ -76,6 +79,10 @@ class ImageComponent extends React.Component {
     });
   };
 
+  handleResetButton = () => {
+    this.setState(this.initState);
+  };
+
   handleSaveButton = () => {
     if (this.state.file != null) {
       html2canvas(document.querySelector(".meme-container"), {
@@ -95,9 +102,6 @@ class ImageComponent extends React.Component {
         <div className="border">
           {!this.state.file ? (
             <div
-              style={{
-                height: 500 + "px",
-              }}
               className="image-container"
             >
               <p>Dodaj Obrazek</p>
@@ -126,25 +130,32 @@ class ImageComponent extends React.Component {
               </span>
             </div>
           )}
-          <TextFieldsComponent
-            handleTopText={this.handleTopText}
-            handleBottomText={this.handleBottomText}
-          />
-          <SizeTextComponent
-            handleSizeTop={this.handleSizeTop}
-            handleSizeBottom={this.handleSizeBottom}
-            sizeTop={this.state.sizeTop}
-            sizeBottom={this.state.sizeBottom}
-          />
-          <ColorTextComponent
-            handleColorTop={this.handleColorTop}
-            handleColorBottom={this.handleColorBottom}
-            colorTop={this.state.colorTop}
-            colorBottom={this.state.colorBottom}
-          />
-          <SaveButtonComponent
-            handleSaveButton={this.handleSaveButton}
-          ></SaveButtonComponent>
+          <div className="fields">
+            <TextFieldsComponent
+              handleTopText={this.handleTopText}
+              handleBottomText={this.handleBottomText}
+            />
+            <SizeTextComponent
+              handleSizeTop={this.handleSizeTop}
+              handleSizeBottom={this.handleSizeBottom}
+              sizeTop={this.state.sizeTop}
+              sizeBottom={this.state.sizeBottom}
+            />
+            <ColorTextComponent
+              handleColorTop={this.handleColorTop}
+              handleColorBottom={this.handleColorBottom}
+              colorTop={this.state.colorTop}
+              colorBottom={this.state.colorBottom}
+            />
+            <div>
+              <SaveButtonComponent
+                handleSaveButton={this.handleSaveButton}
+              ></SaveButtonComponent>
+              <ResetButtonComponent
+                handleResetButton={this.handleResetButton}>
+              </ResetButtonComponent>
+          </div>
+          </div>
         </div>
       </>
     );
